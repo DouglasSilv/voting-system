@@ -5,6 +5,7 @@ import com.sicredi.votingsystem.enums.VoteOption;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 
@@ -13,6 +14,7 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Accessors(chain = true)
 public class Vote {
 
     @Id
@@ -28,5 +30,8 @@ public class Vote {
     @JoinColumn(name = "agenda_id", nullable = false, updatable = false)
     @JsonBackReference
     private VotingAgenda agenda;
+
+    @Column(name = "legal_id")
+    private String legalId;
 
 }

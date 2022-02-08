@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping(value = "/voting-agenda")
+@RequestMapping(value = "/voting-agendas")
 public class VotingAgendaController {
 
     private final VotingAgendaService service;

@@ -16,4 +16,8 @@ public class VoteRepository {
     public Vote save(Vote vote) {
         return jpa.save(vote);
     }
+
+    public boolean existsByAgendaIdAndLegalId(Long votingAgendaId, String legalId) {
+        return jpa.existsByAgendaIdAndLegalId(votingAgendaId, legalId);
+    }
 }
