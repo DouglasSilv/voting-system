@@ -6,8 +6,6 @@ import com.sicredi.votingsystem.service.VoteService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-
 @RestController
 @RequestMapping(value = "/votes")
 public class VoteController {
@@ -20,7 +18,7 @@ public class VoteController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void save(@RequestBody @Valid VoteDTO vote) throws ApiException {
+    public void save(@RequestBody VoteDTO vote) throws ApiException {
         service.save(vote);
     }
 }
