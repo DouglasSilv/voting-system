@@ -23,7 +23,7 @@ public class Vote {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "option", nullable = false, updatable = false)
+    @Column(name = "vote_option", nullable = false, updatable = false)
     private VoteOption option;
 
     @ManyToOne

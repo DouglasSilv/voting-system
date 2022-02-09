@@ -2,6 +2,7 @@ package com.sicredi.votingsystem.repository;
 
 import com.sicredi.votingsystem.entity.VotingAgenda;
 import com.sicredi.votingsystem.jpa.VotingAgendaJpa;
+import com.sicredi.votingsystem.jpa.projections.VotingAgendaResume;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -22,4 +23,9 @@ public class VotingAgendaRepository {
     public Optional<VotingAgenda> findById(Long id) {
         return jpa.findById(id);
     }
+
+    public Optional<VotingAgendaResume> findResumeById(Long id) {
+        return jpa.findResumeById(id);
+    }
+
 }
