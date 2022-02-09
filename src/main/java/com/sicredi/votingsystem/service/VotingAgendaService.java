@@ -11,6 +11,7 @@ import lombok.val;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.function.Supplier;
 
@@ -34,12 +35,26 @@ public class VotingAgendaService {
         return () -> new ApiException("Agenda not found", HttpStatus.NOT_FOUND);
     }
 
+    /**
+     * Save a new voting agenda
+     *
+     * @param dto dto to save
+     * @return new voting agenda id's
+     */
+    @Transactional
     public Long save(VotingAgendaSaveDTO dto) {
         val votingAgenda = new VotingAgenda();
         votingAgenda.setDescription(dto.getDescription());
         return repository.save(votingAgenda).getId();
     }
 
+    /**
+     * Start a session by agenda
+     *
+     * @param id agenda id's
+     * @param seconds session duration in seconds, default is 100
+     */
+    @Transactional
     public void start(Long id, Long seconds) throws ApiException {
         val votingAgenda = findById(id);
         if (votingAgenda.alreadyStarted()) {
@@ -51,6 +66,12 @@ public class VotingAgendaService {
         repository.save(votingAgenda);
     }
 
+    /**
+     * Get agenda resume by id (positive and negative votes)
+     *
+     * @param id agenda id's
+     * @return voting agenda resume dto
+     */
     public VotingAgendaResumeDTO findResumeById(Long id) throws ApiException {
         val resume = repository.findResumeById(id)
                 .orElseThrow(getAgendaNotFoundException());
